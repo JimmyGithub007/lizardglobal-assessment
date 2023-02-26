@@ -1,0 +1,257 @@
+@import './animation';
+@import './colors';
+@import './shadows';
+
+body {
+    background-color: $light-gray-color;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+    gap: 5px 2px;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.card {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: $shadow-2;
+    transition: opacity 0.2s ease-in, transform 0.2s ease-in, visibility 0s;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateX(-20%);
+    visibility: hidden;
+    &.show {
+        margin-bottom: 10px;
+        height: auto;
+        opacity: 1;
+        padding: 15px 20px;
+        transform: translateX(0%);
+        visibility: visible;
+    }
+}
+
+.avatar {
+    border-radius: 100%;
+    box-shadow: $shadow-0;
+    height: 34px;
+    width: 34px;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+.tag {
+    border-radius: 5px;
+    box-shadow: $shadow-1;
+    color: white;
+    font-size: 9px;
+    height: 13px;
+    margin-right: 5px;
+    padding: 2px 5px;
+    background-color: $primary-color;
+}
+
+.tag-selection {
+    @extend .tag;
+    animation: fadeIn 400ms;
+    border-radius: 20px;
+    font-size: 12px;
+    padding: 4px 8px;
+    .close {
+        margin-left: 5px;
+        cursor: pointer;
+    }
+}
+
+.clear-all {
+    background-color: $light-gray-color-2;
+    border-radius: 100%;
+    box-shadow: $shadow-1;
+    color: white;
+    cursor: pointer;
+    height: 21px;
+    margin-left: 5px;
+    width: 21px;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    .listing {
+        animation: fadeIn 300ms;
+        max-width: 512px;
+    }
+}
+
+.content {
+    gap: 5px;
+    a {
+        text-decoration: none;
+        color: black;
+        transition: color 0.2s ease-in;
+        &:hover {
+            color: $primary-color;
+        }
+    }
+    span {
+        &:nth-child(3) {
+            @extend .flex;
+            gap: 2px;
+            align-items: center;
+            color: gray;
+            font-size: 11px;
+        }     
+    }
+}
+
+.pages {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: $shadow-3;
+    gap: 5px;
+    justify-content: center;
+    margin: 10px 0;
+    padding: 8px 10px;
+    button {
+        border: unset;
+        background-color: white;
+        border-radius: 100%;
+        color: $primary-color;
+        cursor: pointer;
+        font-weight: bold;
+        height: 30px;
+        width:30px;
+        transition: background-color 0.2s ease-in;
+        &.active, &:hover {
+            background-color: $primary-color;
+            color: white;
+        }
+    }
+}
+
+.filter-box {
+    background-color: white;
+    box-shadow: $shadow-2;
+    border-radius: 20px;
+    color: gray;
+    cursor: text;
+    position: relative;
+    padding: 8px 15px;
+    margin-bottom: 10px;
+    .dropdown-content { 
+        animation: fadeIn 300ms;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: $shadow-4;
+        display: none;
+        position: absolute;
+        left: 0px;
+        width: 100%;
+        top: 40px;
+        padding: 10px 0px;
+        z-index: 99;
+        .option {
+            cursor: pointer;
+            padding: 5px 15px;
+            &:hover {
+                background-color: $light-gray-color;
+            }
+            &.active {
+                background-color: $light-gray-color-2;
+            }
+        }
+        &.show {
+            display: block;
+        }
+    }
+}
+
+.loader {
+    justify-content: center;
+    min-height: inherit;
+    .container {
+        height: 15px;
+        width: 105px;
+        display: flex;
+        position: relative;
+        .circle {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: $primary-color;
+            animation: move 500ms linear 0ms infinite;
+            margin-right: 30px;
+            &:first-child {
+                position: absolute;
+                top: 0;
+                left: 0;
+                animation: grow 500ms linear 0ms infinite;
+            }
+            &:last-child {
+                position: absolute;
+                top: 0;
+                right: 0;
+                margin-right: 0;
+                animation: grow 500ms linear 0s infinite reverse;
+            }
+        }
+    }
+}
+
+.detail {
+    max-width: 512px;
+    a {
+        font-weight: bold;
+        color: gray;
+        height: 20px;
+        margin-bottom: 5px;
+        text-decoration: none;
+    }
+    article {
+        animation: fadeIn 300ms;
+        background-color: white;
+        border-radius: 20px;
+        box-shadow: $shadow-2;
+        padding: 15px 20px;
+    }
+    .avatar {
+        height: 50px;
+        width: 50px;
+    }
+    figure {
+        gap: 5px;
+        margin: 0;
+    }
+    figcaption {
+        justify-content: center;
+    }
+    time {
+        font-size: 13px;
+        color: gray;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .main {
+        .listing {
+            padding: 0 10px;
+        }
+    }
+
+    .detail {
+        padding: 0 10px;
+    }
+}

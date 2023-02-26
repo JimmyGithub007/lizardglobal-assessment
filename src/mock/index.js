@@ -9,5 +9,9 @@ createServer({
     this.get('/posts', () => {
       return data;
     });
+
+    this.get('/posts/:id', (schema, request) => {
+      return data.posts.find(d => d.id === request.params.id);
+    });
   },
 });
